@@ -4,8 +4,8 @@ Authors: Daniel Jarne Ornia, Manuel Mazo Jr
 
 The code for the simulations is written in Python on its entirety. The authors used Anaconda for installation.
 1. To install Anaconda, follow the instructions in https://docs.anaconda.com/anaconda/install/
-2. Once Anaconda is installed, open a terminal window, navigate to S7 AE Code and install a conda envi- ronment from the file formats.yml (see https://docs.conda.io/projects/conda/en/latest/user-guide/ tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file).
-3. Activate the formats environment (https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/ manage-environments.html#activating-an-environment).
+2. Once Anaconda is installed, open a terminal window, navigate to S7 AE Code and install a conda envi- ronment from the file formats.yml (see https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file).
+3. Activate the formats environment (https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#activating-an-environment).
 
 ## Training a Q Function for a Particle Tag game
 We can first learn a Q-Function (and policy) for a specific particle tag game. Using the command:
@@ -34,7 +34,7 @@ python train_Q.py --episodes 100000
 python compute_robust_svr.py --preQ Qs/trained_Q_5x5.pickle  --alpha 0.2 --nu 0.01 --C 100 --gamma 1
 python test_robust_svr.py --directoryname robustness_surrogates
 ```
-##Reproducing the results in Table 1
+## Reproducing the results in Table 1
 To reproduce the exact results, we provide the trained SVR models and Q functions used in the paper experiments. Download the zip file from (email authors for password): https://surfdrive.surf.nl/files/index.php/s/1r4yE3Bh9ZH9cgj
 
 Copy the pickle SVR models into the folder robustness surrogates and run:
