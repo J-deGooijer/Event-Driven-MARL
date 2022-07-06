@@ -37,21 +37,37 @@ python test_robust_svr.py --directoryname robustness_surrogates
 ##Reproducing the results in Table 1
 To reproduce the exact results, we provide the trained SVR models and Q functions used in the paper experiments. Download the zip file from (email authors for password): https://surfdrive.surf.nl/files/index.php/s/1r4yE3Bh9ZH9cgj
 
-Copy the pickle SVR models into the folder robustness surrogates and simply run:
+Copy the pickle SVR models into the folder robustness surrogates and run:
+```
 python test_robust_svr.py --directoryname robustness_surrogates
+```
 
 This will begin printing on the screen the results for the simulations with the different SVR models. These are the results presented on Table 1.
 
 ## Hyperparameters of SVR
-Each value of $`\alpha`$ in Table 1 in the paper entails the solution of a scenario approach optimization using a random sample of points $`\mathcal{X}_S=\{(\mathbf{x},\Gamma_{\alpha} (\mathbf{x}) )\}`$ of size $`S=10^{5}`$. For each SVR model the hyper-parameters were tuned to obtain comparable results between them, considering that the target values $`\Gamma_{\alpha}`$ produced quite different results depending on the considered $`\alpha`$. In the table below we collect some more details on the computed SVR models used to approximate the function $`\Gamma_{\alpha}`$. All the SVR models were computed using scikit-learn's $`\mu`$-SVR implementation.
 
-| $`\alpha`$ | $`\rho`$ | $`\tau`$ | $`\kappa^*`$ | $`R^2`$ | $`\frac{s^*}{S}`$ |
+Each value of $\alpha$ in Table 1 in the paper entails the solution of a scenario approach optimization using a random sample of points 
+$X_{S}=\{(x,\Gamma_{\alpha}(x))\}$ of size $S=10^{5}$.
+For each SVR model the hyper-parameters were tuned to obtain comparable results between them, considering that the target values $\Gamma_{\alpha}$ produced quite different results depending on the considered 
+$\alpha$. In the table below we collect some more details on the computed SVR models used to approximate the function 
+$\Gamma_{\alpha}$. All the SVR models were computed using scikit-learn's 
+$\mu$-SVR implementation.
+
+| $\alpha$ | $\rho$ | $\tau$ | $\kappa^*$ | $R^2$ | $\frac{s^*}{S}$ |
 | ---      | ---      | ---      | ---      | ---      | ---      |
-| $`0.4`$ | $`0.01`$ | $`100`$ | $`0.00067`$ | $`0.999`$ | $`0.067`$|
-| $`0.5`$ | $`0.01`$ | $`100`$ | $`0.0510`$ | $`0.907`$ | $`0.132`$|
-| $`0.6`$ | $`0.1`$ | $`100`$ | $`0.0350`$ | $`0.995`$ | $`0.187`$|
-| $`0.7`$ | $`0.1`$ | $`100`$ | $`0.0340`$ | $`0.998`$ | $`0.103`$|
-| $`0.8`$ | $`0.1`$ | $`100`$ | $`0.0131`$ | $`0.998`$ | $`0.063`$|
-| $`0.9`$ | $`0.1`$ | $`100`$ | $`0.01485`$ | $`0.999`$ | $`0.084`$|
+| $0.4$ | $0.01$ | $100$ | $0.00067$ | $0.999$ | $0.067$|
+| $0.5$ | $0.01$ | $100$ | $0.0510$ | $0.907$ | $0.132$|
+| $0.6$ | $0.1$ | $100$ | $0.0350$ | $0.995$ | $0.187$|
+| $0.7$ | $0.1$ | $100$ | $0.0340$ | $0.998$ | $0.103$|
+| $0.8$ | $0.1$ | $100$ | $0.0131$ | $0.998$ | $0.063$|
+| $0.9$ | $0.1$ | $100$ | $0.01485$ | $0.999$ | $0.084$|
 
-Please note that the scikit-learn implementation uses different nomenclature for the parameters compared to the paper (the equivalence is $`\rho = \mu`$, $`\tau = C`$, $`\kappa =\epsilon`$). All the SVR models were computed with a radial basis function kernel due to the fact that, intuitively, similar state vectors would yield similar robustness values. The obtained prediction scores $R^2$ are relatively high, which could indicate some over-fitting in the models. However, this does not seem to be a problem in the implementation since the sample of training points is large enough compared to the complexity of the function $`\Gamma_\alpha`$, and the fact that the approximations are very conservative. 
+Please note that the scikit-learn implementation uses different nomenclature for the parameters compared to the paper. The equivalence is:
+- $\rho=\mu$
+- $\tau=C$
+- $\kappa=\epsilon$
+
+All the SVR models were computed with a radial basis function kernel due to the fact that, intuitively, similar state vectors would yield similar robustness values. The obtained prediction scores 
+$R^2$ are relatively high, which could indicate some over-fitting in the models. However, this does not seem to be a problem in the implementation since 
+1. The sample of training points is large enough compared to the complexity of the function $\Gamma_\alpha$
+2. The approximations are very conservative. 
